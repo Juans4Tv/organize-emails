@@ -140,7 +140,7 @@ def analyze(session_factory, document_id: int) -> None:
         verified_by_source = False
         if cfdi and cfdi.get("total") is not None:
             doc.amount = cfdi["total"]
-            doc.currency = cfdi.get("moneda") or "MXN"
+            doc.currency = cfdi.get("moneda") or "COP"
             amount_conf = 0.95
             verified_by_source = True  # datos exactos del XML
         else:
