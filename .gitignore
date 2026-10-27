@@ -1,0 +1,11 @@
+data/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+dist/
+.venv/
+respaldo*.sql
+respaldo*.zip
+dash_check.json
