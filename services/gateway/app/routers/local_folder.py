@@ -170,12 +170,17 @@ def local_folder_download(name: str):
 
 @router.get("/api/local-folder/open")
 def local_folder_open() -> dict:
-    """Devuelve la ruta real de la carpeta en el host para abrirla en el Explorador."""
+    """Devuelve la ruta de la carpeta local.
+
+    ``HOST_LOCAL_SCAN_DIR`` es opcional: permite mostrar la ruta absoluta del
+    equipo anfitrión (por ejemplo para abrirla desde el navegador). Dentro de
+    Docker la ruta real siempre es ``LOCAL_SCAN_DIR``.
+    """
     if not os.path.isdir(LOCAL_SCAN_DIR):
         os.makedirs(LOCAL_SCAN_DIR, exist_ok=True)
     return {
         "container_path": LOCAL_SCAN_DIR,
-        "windows_path": r"C:\Users\cjuan\Downloads\OpenOrganizador\data\local-scan",
+        "windows_path": os.environ.get("HOST_LOCAL_SCAN_DIR", "").strip(),
         "folder_exists": True,
     }
 

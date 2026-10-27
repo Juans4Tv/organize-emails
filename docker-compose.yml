@@ -69,7 +69,8 @@ services:
       dockerfile: services/gateway/Dockerfile
     environment:
       <<: *app_env
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}
+      CORS_ORIGINS: "${CORS_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}"
+      HOST_LOCAL_SCAN_DIR: "${HOST_LOCAL_SCAN_DIR:-}"
     ports:
       - "127.0.0.1:8000:8000"
     volumes:

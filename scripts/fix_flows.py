@@ -2,7 +2,7 @@
 
 Pasos:
 1. Si no existe el ajuste 'owner_name', lo deriva del correo IMAP
-   (juanmiguelcedenosolano -> Juan Miguel Cedenosolano).
+   (nombre.apellido -> Nombre Apellido).
 2. Rellena emisor_name/receptor_name de los XML organizados re-parseando
    el archivo (CFDI o UBL/DIAN).
 3. Aplica la regla: receptor ~ dueno -> gasto; emisor ~ dueno -> ganancia.

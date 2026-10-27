@@ -77,10 +77,11 @@ Los puertos se publican solo en `127.0.0.1`, así que no quedan accesibles desde
 ## Instalación y arranque
 
 1. Instala y abre **Docker Desktop**. Espera a que el ícono de la ballena esté en verde.
-2. Abre una terminal en la carpeta del proyecto:
+2. Clona el repositorio (o abre la carpeta si ya la descargaste):
 
    ```powershell
-   cd C:\Users\cjuan\Downloads\OpenOrganizador
+   git clone https://github.com/TU_USUARIO/openorganizador.git
+   cd openorganizador
    ```
 
 3. Levanta los contenedores:
@@ -121,6 +122,8 @@ OpenOrganizador/
 ├── docker-compose.yml          # Servicios, red y volúmenes
 ├── start.bat / stop.bat        # Arranque y parada en Windows
 ├── .env.example                # Variables de entorno de ejemplo
+├── LICENSE                     # Licencia MIT
+├── .github/workflows/tests.yml # Pruebas automáticas en GitHub Actions
 ├── data/                       # Facturas, inbox, archivos locales y clave de cifrado (no se versiona)
 ├── shared/                     # Código común: BD, colas, parsers y utilidades
 │   ├── db.py                   # Modelos SQLAlchemy y migraciones
@@ -147,8 +150,15 @@ OpenOrganizador/
 
 - Los archivos se guardan en `data/facturas/<Lugar>/<AAAA-MM>/`.
 - La carpeta `data/inbox/` es para archivos descargados manualmente.
+- La carpeta `data/local-scan/` es la que usa la pantalla **Carpeta local**.
 - La base de datos vive en el volumen Docker `pgdata`.
 - La clave de cifrado vive en `data/.secret_key`. **Inclúyela en tus respaldos**: sin ella no se pueden descifrar las contraseñas guardadas (si se pierde, basta con volver a escribir la contraseña de Gmail en Configuración).
+
+Si quieres que el botón **Abrir carpeta** funcione y que la interfaz muestre la ruta de tu equipo, copia `.env.example` a `.env` y define la ruta absoluta:
+
+```dotenv
+HOST_LOCAL_SCAN_DIR=C:\ruta\a\OpenOrganizador\data\local-scan
+```
 
 **Respaldo recomendado:**
 
@@ -181,7 +191,7 @@ pip install -r services/gateway/requirements.txt pytest httpx
 python -m pytest
 ```
 
-Las pruebas cubren parsers de CFDI, UBL/DIAN, montos, fechas, lugares y archivos comprimidos.
+Las pruebas cubren parsers de CFDI, UBL/DIAN, montos, fechas, lugares, archivos comprimidos y cifrado de credenciales. También se ejecutan automáticamente en **GitHub Actions** en cada push o pull request.
 
 ---
 
@@ -232,6 +242,12 @@ docker compose exec redis redis-cli DEL queue:ai
 ```
 
 Si instalaste Ollama solo para este proyecto, puedes borrar el modelo con `ollama rm qwen2.5:7b-instruct` o desinstalar Ollama desde Windows.
+
+---
+
+## Licencia
+
+Este proyecto se distribuye bajo la licencia **MIT**. Consulta [LICENSE](LICENSE) para más detalles.
 
 ---
 

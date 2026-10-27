@@ -101,7 +101,7 @@ export default function LocalFolder() {
       // intenta abrir en el Explorador vía ruta de red/archivo
       window.open(`file:///${windowsPath.replace(/\\/g, '/')}`, '_self')
     } else {
-      setMsg({ type: 'error', text: 'No se pudo determinar la ruta de la carpeta' })
+      setMsg({ type: 'error', text: 'Configura HOST_LOCAL_SCAN_DIR en .env para abrir la carpeta desde el navegador' })
     }
   }
 
@@ -169,7 +169,7 @@ export default function LocalFolder() {
       </div>
 
       <p className="muted" style={{ fontSize: 12, marginTop: 10 }}>
-        Ruta en tu PC: <code>{windowsPath || 'C:\\Users\\cjuan\\Downloads\\OpenOrganizador\\data\\local-scan\\'}</code>
+        Ruta de la carpeta: <code>{windowsPath || folder || 'data/local-scan'}</code>
       </p>
 
       <div className="panel" style={{ marginTop: 14 }}>

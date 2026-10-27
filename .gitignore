@@ -4,8 +4,12 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .env
+.secret_key
 dist/
 .venv/
+Thumbs.db
+.DS_Store
+*.log
 respaldo*.sql
 respaldo*.zip
 dash_check.json
