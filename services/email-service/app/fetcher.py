@@ -15,7 +15,7 @@ from sqlalchemy import func, select
 from shared.archives import ArchivePasswordError, extract_members, is_archive_ext
 from shared.crypto import decrypt_secret
 from shared.config import FACTURAS_DIR, INBOX_DIR, PROCESSING_DIR
-from shared.db import Document, Email, Job, Place, Setting, get_session_factory
+from shared.db import Document, Email, Job, Setting, get_session_factory
 from shared.queues import queue_pdf
 
 log = logging.getLogger("email-service")

@@ -1,8 +1,6 @@
 import os
 import shutil
 
-from sqlalchemy.orm import Session
-
 from shared.config import FACTURAS_DIR
 from shared.parsing.places import sanitize_folder
 

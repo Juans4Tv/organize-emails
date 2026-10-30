@@ -1,5 +1,6 @@
 import os
 import uuid
+from datetime import datetime
 
 from fastapi import APIRouter, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
@@ -17,11 +18,6 @@ router = APIRouter()
 
 
 # ---------- inbox manual ----------
-
-
-def current_account(session) -> str:
-    row = session.get(Setting, "imap_user")
-    return (row.value or "").strip() if row else ""
 
 
 def _register_manual_file(session, name: str, data: bytes, account: str | None = None) -> int:

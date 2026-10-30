@@ -118,7 +118,7 @@ def dashboard(account: str | None = None) -> dict:
         .group_by(Document.account)
         .order_by(Document.account)
     ).all()
-    current_account = current_account(session)
+    current = current_account(session)
 
     session.close()
     return {
@@ -131,7 +131,7 @@ def dashboard(account: str | None = None) -> dict:
         "documents_count": int(docs_total),
         "by_account": [
             {"account": r[0] or "(sin cuenta)", "count": r[1], "monto": round(r[2] or 0, 2),
-             "needs_review": int(r[3] or 0), "current": (r[0] or "") == current_account}
+             "needs_review": int(r[3] or 0), "current": (r[0] or "") == current}
             for r in by_account_q
         ],
     }

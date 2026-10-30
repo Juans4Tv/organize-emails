@@ -8,7 +8,7 @@ from shared.config import QUEUE_ORGANIZE
 from shared.db import Document, Email, Place, Setting, get_session_factory, init_db
 from shared.files import move_document_file
 from shared.money import normalize_amount
-from shared.names import name_matches_owner, pdf_sibling_match
+from shared.names import name_matches_owner
 from shared.parsing.amounts import extract_amount, extract_currency
 from shared.parsing.cfdi import classify_flow, parse_cfdi
 from shared.parsing.dates import extract_issue_date
